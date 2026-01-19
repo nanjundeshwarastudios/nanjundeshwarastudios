@@ -29,6 +29,22 @@
       top: 0;
       z-index: 100;
     }
+    .video-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.back-video {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+  z-index: -1; /* Puts the video behind other content */
+}
+
 
     .studio-logo {
       width: 120px;
@@ -188,7 +204,7 @@
   </style>
 <header>
   <div style="display: flex; align-items: center; gap: 20px;">
-    <img src="C:\Users\MAHESH L S\Downloads\NJS.png" alt="Studio Logo" class="studio-logo" />
+    <img src="NANJUNDESHWARASTUDIOS LOGO.jpg" alt="Studio Logo" class="studio-logo" />
     <div class="studio-name">Nanjundeshwara Studios</div>
   </div>
   <nav>
@@ -200,6 +216,13 @@
     </ul>
   </nav>
 </header>
+  <div class="video-container">
+  <video autoplay loop muted playsinline class="back-video">
+    <source src="170206-842720422.mp4" type="video/mp4">
+  </video>
+  <!-- Your content goes here -->
+</div>
+
 
   <section id="about">
     <h2>About Our Studio</h2>
@@ -213,7 +236,7 @@
 
   <section>
     <div class="quote-block">
-      “Discipline isn't restriction — it's the doorway to mastery. At our studio, every line of code is a prayer.”
+     "Consistency is the key of success"
       <div class="quote-author"> Mahesh L S</div>
     </div>
   </section>
@@ -224,8 +247,8 @@
       <div class="project-card">
         <img src="C:/Users/MAHESH%20L%20S/OneDrive/%EB%AC%B8%EC%84%9C/projectb.jpg" alt="Project B" />
         <div class="project-info">
-          <h3>Project B: The Haunted School</h3>
-          <p>A supernatural psychological horror experience rooted in forgotten rituals, terrifying spirits, and divine weapons.</p>
+          <h3>HORDWEARD</h3>
+          <p> "HORDWEARD is a 2.5D adventure–mystery game rooted in coastal Karnataka’s folklore. Play as Inspector Ghambir as he uncovers divine secrets, collects Jyotirlingas, solves puzzles, and faces tribal-powered enemies across breathtaking ghats and forests."</p>
         </div>
       </div>
     </div>
@@ -354,8 +377,8 @@
     <div class="divider"></div>
     <div style="margin-top: 40px;">
      <iframe width="100%" height="400"
-  src="https://www.youtube.com/embed/Dv4zEm0hDQk"
-  title="Project B Teaser"
+  src="THE GAME IS UNDER DEVELOPMENT TEASER WILL BE LAUNCHED SOON"
+  title="HORDWEARD TEASER"
   frameborder="0"
   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
   allowfullscreen
@@ -445,4 +468,5 @@
 </script>
  </body>
 </html>
+
 
