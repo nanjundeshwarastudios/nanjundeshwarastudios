@@ -309,29 +309,34 @@
         }
 
         /* --- PROJECT SECTION --- */
-        .project-card {
+       .project-card {
             background: white;
             border: 1px solid var(--border-light);
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1.2fr 0.8fr; /* Adjusted ratio for landscape */
             box-shadow: var(--shadow);
             overflow: hidden;
             transition: 0.3s;
+            align-items: stretch;
         }
 
         .project-card:hover { transform: translateY(-5px); }
 
         .project-visual {
             position: relative;
-            height: 1000px;
             background: #000;
             overflow: hidden;
+            /* Remove the fixed 1000px height to allow landscape scaling */
+            display: flex;
+            align-items: center;
         }
         
         .project-visual img {
-            width: 100%; height: 100%;
-            object-fit: cover;
-            opacity: 0.9;
+            width: 100%;
+            height: 100%;
+            /* 'cover' fills the area, 'contain' shows the full image */
+            object-fit: cover; 
+            opacity: 1; /* Made fully opaque for better visibility */
         }
 
         .project-details {
@@ -515,12 +520,13 @@
         <div class="container">
             <h2 class="section-title"><span>Featured Project</span></h2>
             
-            <div class="project-card">
-                <div class="project-visual">
-                    <img src="TIDE VOYAGE.jpeg" alt="Tide Voyage Poster" onerror="this.src='C:\Users\MAHESH L S\OneDrive\사진\TIDE VOYAGE.jpeg'">
-                    <div style="position: absolute; bottom: 0; left: 0; background: var(--primary); color: white; padding: 5px 15px; font-weight: bold;">
-                        IN DEVELOPMENT
-                    </div>
+            <div class="project-visual">
+    <!-- Ensure the src matches your filename exactly -->
+    <img src="TIDE VOYAGE.jpeg" alt="Tide Voyage Landscape" onerror="this.src='https://placehold.co/800x450?text=Tide+Voyage'">
+    <div style="position: absolute; bottom: 0; left: 0; background: var(--primary); color: white; padding: 5px 15px; font-weight: bold; font-family: 'Orbitron';">
+        IN DEVELOPMENT
+    </div>
+</div>
                 </div>
                 <div class="project-details">
                     <div class="badges">
