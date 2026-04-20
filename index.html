@@ -4,14 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NANJUNDESHWARA STUDIOS</title>
-    <meta name="description" content="Official website of Nanjundeshwara Studios.">
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Icons -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
 
     <style>
@@ -20,11 +16,10 @@
             --primary-dark: #005a8d;
             --accent: #d62828; 
             --bg-main: #ffffff;
-            --bg-secondary: #f4f6f8;
             --text-main: #1a1a1a;
             --text-light: #555555;
             --border-light: #e0e0e0;
-            --shadow: 0 10px 30px rgba(0,0,0,0.08);
+            --shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
@@ -40,6 +35,7 @@
         body.locked { overflow: hidden; }
         h1, h2, h3, h4, .btn { font-family: 'Orbitron', sans-serif; }
 
+        /* --- INTERACTIVE BACKGROUND --- */
         #canvas-container {
             position: fixed;
             top: 0; left: 0;
@@ -59,16 +55,26 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            transition: 0.8s ease-in-out;
+            transition: 1s cubic-bezier(0.77, 0, 0.175, 1);
         }
 
         #splash-screen.hidden { transform: translateY(-100%); }
 
-        .splash-content img {
-            width: 150px; height: 150px;
+        /* LOGO STYLING */
+        .studio-logo {
+            width: 160px;
+            height: 160px;
             border-radius: 50%;
-            margin-bottom: 20px;
-            border: 3px solid var(--primary);
+            border: 4px solid var(--primary);
+            margin-bottom: 25px;
+            box-shadow: 0 0 30px rgba(0, 124, 195, 0.3);
+            object-fit: cover;
+            animation: bounce 2s infinite alternate;
+        }
+
+        @keyframes bounce {
+            from { transform: translateY(0); }
+            to { transform: translateY(-15px); }
         }
 
         /* --- NAVIGATION --- */
@@ -79,63 +85,31 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(15px);
             z-index: 1000;
             border-bottom: 1px solid var(--border-light);
             transform: translateY(-100%);
-            transition: 0.5s;
+            transition: 0.6s;
         }
 
         nav.visible { transform: translateY(0); }
+        .brand { font-size: 1.2rem; font-weight: 900; display: flex; align-items: center; gap: 10px; }
+        .brand img { width: 35px; border-radius: 50%; }
 
-        .brand { font-size: 1.4rem; font-weight: 800; display: flex; align-items: center; gap: 10px; }
-        .brand span { color: var(--primary); }
-
-        .nav-links { display: flex; gap: 30px; list-style: none; }
-        .nav-links a { text-decoration: none; color: var(--text-main); font-weight: 600; text-transform: uppercase; transition: 0.3s; }
-        .nav-links a:hover { color: var(--primary); }
-
-        /* --- SECTIONS --- */
-        section { padding: 100px 20px; }
-        .container { max-width: 1200px; margin: 0 auto; }
-        .section-title { text-align: center; font-size: 2.5rem; margin-bottom: 60px; text-transform: uppercase; }
-        .section-title span { border-bottom: 4px solid var(--primary); }
-
-        /* --- HERO --- */
-        #hero { height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; }
-        .hero-content h1 { font-size: 4rem; line-height: 1.1; margin-bottom: 20px; text-transform: uppercase; }
-
-        .btn {
-            display: inline-block;
-            padding: 15px 40px;
-            background: var(--primary);
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-            text-transform: uppercase;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-        .btn:hover { background: var(--primary-dark); transform: translateY(-2px); }
-
-        /* --- PROJECT SECTION (VIDEO READY) --- */
+        /* --- PROJECT CARD --- */
         .project-card {
             background: white;
             border: 1px solid var(--border-light);
             display: flex;
             flex-direction: column;
             box-shadow: var(--shadow);
+            border-radius: 8px;
             overflow: hidden;
-            transition: 0.5s;
+            margin-top: 30px;
         }
 
-        .project-header-img {
-            width: 100%;
-            height: 400px;
-            object-fit: cover;
-        }
+        .project-header-img { width: 100%; height: 450px; object-fit: cover; }
 
         .project-split {
             display: grid;
@@ -143,34 +117,32 @@
             border-top: 1px solid var(--border-light);
         }
 
-        .video-box {
-            background: #000;
-            padding: 30px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
+        .video-box { background: #000; padding: 40px; display: flex; align-items: center; }
+        .video-box video { width: 100%; border: 3px solid var(--primary); }
+
+        .project-details { padding: 40px; background: #fff; }
+        .badge { background: var(--bg-main); border: 1px solid var(--primary); padding: 5px 12px; font-size: 0.8rem; border-radius: 20px; color: var(--primary); font-weight: 700; margin-right: 5px; }
+
+        .btn {
+            display: inline-block;
+            padding: 18px 45px;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            font-weight: 900;
+            text-transform: uppercase;
+            border-radius: 4px;
+            transition: 0.3s;
+            border: none;
+            cursor: pointer;
         }
+        .btn:hover { background: var(--primary-dark); transform: scale(1.05); }
 
-        .video-box video {
-            width: 100%;
-            border: 2px solid var(--primary);
-            box-shadow: 0 0 20px rgba(0, 124, 195, 0.2);
-        }
-
-        .project-details { padding: 40px; }
-        .badge { background: var(--bg-secondary); padding: 5px 12px; font-size: 0.8rem; margin-right: 5px; border-radius: 4px; font-weight: 700; color: var(--primary); }
-        .story-box { background: var(--bg-secondary); padding: 20px; border-left: 4px solid var(--accent); margin: 20px 0; font-style: italic; }
-
-        /* --- CONTACT --- */
-        #contact { background: var(--bg-secondary); }
-        .contact-form { max-width: 600px; margin: 0 auto; background: white; padding: 40px; box-shadow: var(--shadow); border-top: 4px solid var(--primary); }
-        .form-control { width: 100%; padding: 15px; margin-bottom: 20px; border: 1px solid var(--border-light); font-family: 'Rajdhani'; }
-
-        footer { background: #1a1a1a; color: white; text-align: center; padding: 30px; }
+        footer { background: #111; color: #555; text-align: center; padding: 40px; font-weight: bold; }
 
         @media (max-width: 992px) {
             .project-split { grid-template-columns: 1fr; }
-            .hero-content h1 { font-size: 2.5rem; }
+            .project-header-img { height: 300px; }
         }
     </style>
 </head>
@@ -178,88 +150,76 @@
 
     <canvas id="canvas-container"></canvas>
 
+    <!-- SPLASH SCREEN WITH LOGO -->
     <div id="splash-screen">
         <div class="splash-content" style="text-align: center;">
-            <img src="NANJUNDESHWARASTUDIOS LOGO.jpg" alt="Logo" onerror="this.src='https://placehold.co/150'">
-            <h1>NANJUNDESHWARA STUDIOS</h1>
-            <p style="letter-spacing: 2px; color: #777;">CRAFTING DIGITAL EXPERIENCES</p>
-            <button class="btn" style="margin-top: 20px;" onclick="enterStudio()">ENTER STUDIO</button>
+            <img src="NANJUNDESHWARASTUDIOS LOGO.jpg" class="studio-logo" alt="Nanjundeshwara Studios Logo">
+            <h1 style="font-size: 2.5rem; letter-spacing: 2px;">NANJUNDESHWARA STUDIOS</h1>
+            <p style="color: var(--text-light); margin-bottom: 40px;">INDEPENDENT GAME DEVELOPMENT</p>
+            <button class="btn" onclick="enterStudio()">ENTER STUDIO</button>
         </div>
     </div>
 
     <nav id="navbar">
-        <div class="brand">NANJUNDESHWARA<span>STUDIOS</span></div>
-        <ul class="nav-links">
-            <li><a href="#hero">About</a></li>
-            <li><a href="#project">Games</a></li>
-            <li><a href="#contact">Contact</a></li>
+        <div class="brand">
+            <img src="NANJUNDESHWARASTUDIOS LOGO.jpg" alt="Logo">
+            NANJUNDESHWARA<span>STUDIOS</span>
+        </div>
+        <ul style="display: flex; gap: 25px; list-style: none;">
+            <li><a href="#hero" style="text-decoration: none; color: #111; font-weight: 700;">ABOUT</a></li>
+            <li><a href="#project" style="text-decoration: none; color: #111; font-weight: 700;">PROJECTS</a></li>
         </ul>
     </nav>
 
-    <section id="hero">
+    <section id="hero" style="height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center;">
         <div class="hero-content">
-            <h1>Creativity meets<br><span style="color:var(--primary);">Modern Gameplay</span></h1>
-            <p>Independent Game Developer | India</p>
-            <a href="#project" class="btn" style="margin-top: 20px;">View Prototype</a>
+            <h1 style="font-size: 4.5rem; line-height: 1;">CRAFTING DIGITAL<br><span style="color: var(--primary);">EXPERIENCES</span></h1>
+            <p style="font-size: 1.2rem; color: var(--text-light); margin-top: 20px;">Consistency | Hard Work | Innovation</p>
         </div>
     </section>
 
-    <section id="project">
-        <div class="container">
-            <h2 class="section-title"><span>Featured Project</span></h2>
+    <section id="project" style="padding: 100px 20px;">
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <h2 style="text-align: center; margin-bottom: 50px; text-transform: uppercase;">Featured <span>Work</span></h2>
             
             <div class="project-card">
-                <!-- 1. FULL LANDSCAPE IMAGE -->
                 <img src="TIDE VOYAGE.jpeg" class="project-header-img" alt="Tide Voyage">
-
                 <div class="project-split">
-                    <!-- 2. VIDEO PROTOTYPE -->
                     <div class="video-box">
-                        <p style="color: #fff; font-family: 'Orbitron'; font-size: 0.7rem; margin-bottom: 10px; opacity: 0.6;">
-                            <i class="fas fa-play"></i> PROTOTYPE_DEMO.MP4
-                        </p>
                         <video controls poster="TIDE VOYAGE.jpeg">
                             <source src="prototype_video.mp4" type="video/mp4">
-                            Your browser does not support the video tag.
                         </video>
                     </div>
-
-                    <!-- 3. PROJECT DETAILS -->
                     <div class="project-details">
-                        <div class="badges">
+                        <div style="margin-bottom: 20px;">
                             <span class="badge">UNITY 3D</span>
                             <span class="badge">ARCADE</span>
                         </div>
-                        <h3 style="font-size: 2.2rem; margin: 10px 0;">Tide Voyage</h3>
-                        <div class="story-box">
-                            "A survival journey through dangerous currents. Dodge obstacles and collect artifacts to survive the tide."
-                        </div>
-                        <p style="font-size: 0.9rem; color: var(--text-light); margin-bottom: 25px;">
-                            This prototype showcases real-time buoyancy physics and obstacle detection optimized for mobile devices.
+                        <h3 style="font-size: 2.5rem; margin-bottom: 15px;">Tide Voyage</h3>
+                        <p style="color: var(--text-light); font-size: 1.1rem; margin-bottom: 30px;">
+                            An endless journey through high-speed nautical currents. Built with real-time buoyancy and dynamic obstacle spawning.
                         </p>
-                        <a href="https://drive.google.com/drive/folders/1HsAOUYBbFlAH_qYPlo1bkIKUuXAo6i0Z?usp=sharing" target="_blank" class="btn" style="font-size: 0.8rem; width: 100%; text-align: center;">DOWNLOAD BUILD</a>
+                        <a href="#contact" class="btn" style="width: 100%; text-align: center;">INQUIRE NOW</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="contact">
-        <div class="container">
-            <h2 class="section-title"><span>Get in Touch</span></h2>
-            <div class="contact-form">
-                <form id="feedbackForm">
-                    <input type="text" placeholder="Your Name" class="form-control" required>
-                    <input type="email" placeholder="Your Email" class="form-control" required>
-                    <textarea placeholder="Message" rows="5" class="form-control" required></textarea>
-                    <button type="submit" class="btn" style="width: 100%;">SEND FEEDBACK</button>
-                </form>
-            </div>
+    <section id="contact" style="padding: 100px 20px; background: var(--bg-secondary);">
+        <div class="contact-form">
+            <h2 style="text-align: center; margin-bottom: 40px;">GET IN TOUCH</h2>
+            <form>
+                <input type="text" placeholder="Name" style="width:100%; padding: 15px; margin-bottom: 20px; border: 1px solid #ddd;">
+                <input type="email" placeholder="Email" style="width:100%; padding: 15px; margin-bottom: 20px; border: 1px solid #ddd;">
+                <textarea placeholder="Message" rows="5" style="width:100%; padding: 15px; margin-bottom: 20px; border: 1px solid #ddd;"></textarea>
+                <button type="submit" class="btn" style="width: 100%;">SEND MESSAGE</button>
+            </form>
         </div>
     </section>
 
     <footer>
-        <p>&copy; 2026 NANJUNDESHWARA STUDIOS. ALL RIGHTS RESERVED.</p>
+        <p>&copy; 2026 NANJUNDESHWARA STUDIOS | BENGALURU</p>
     </footer>
 
     <script>
@@ -269,10 +229,13 @@
             document.body.classList.remove('locked');
         }
 
-        // Particle Background Logic
+        // --- INTERACTIVE PARTICLE MESH (MOUSE REACTIVE) ---
         const canvas = document.getElementById('canvas-container');
         const ctx = canvas.getContext('2d');
         let particles = [];
+        let mouse = { x: null, y: null, radius: 150 };
+
+        window.addEventListener('mousemove', (e) => { mouse.x = e.x; mouse.y = e.y; });
         function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
         window.addEventListener('resize', resize);
         resize();
@@ -281,32 +244,63 @@
             constructor() {
                 this.x = Math.random() * canvas.width;
                 this.y = Math.random() * canvas.height;
-                this.speedX = (Math.random() - 0.5) * 0.5;
-                this.speedY = (Math.random() - 0.5) * 0.5;
+                this.size = 2;
+                this.baseX = this.x;
+                this.baseY = this.y;
+                this.density = (Math.random() * 30) + 1;
             }
             update() {
-                this.x += this.speedX; this.y += this.speedY;
-                if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
-                if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+                let dx = mouse.x - this.x;
+                let dy = mouse.y - this.y;
+                let distance = Math.sqrt(dx*dx + dy*dy);
+                let forceDirectionX = dx / distance;
+                let forceDirectionY = dy / distance;
+                let maxDistance = mouse.radius;
+                let force = (maxDistance - distance) / maxDistance;
+                let directionX = forceDirectionX * force * this.density;
+                let directionY = forceDirectionY * force * this.density;
+
+                if (distance < mouse.radius) {
+                    this.x -= directionX;
+                    this.y -= directionY;
+                } else {
+                    if (this.x !== this.baseX) {
+                        let dx = this.x - this.baseX;
+                        this.x -= dx/10;
+                    }
+                    if (this.y !== this.baseY) {
+                        let dy = this.y - this.baseY;
+                        this.y -= dy/10;
+                    }
+                }
             }
         }
-        for (let i = 0; i < 70; i++) particles.push(new Particle());
 
+        function init() {
+            particles = [];
+            for (let i = 0; i < 150; i++) particles.push(new Particle());
+        }
         function animate() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            particles.forEach(p => {
-                p.update();
-                particles.forEach(p2 => {
-                    let d = Math.hypot(p.x - p2.x, p.y - p2.y);
-                    if (d < 150) {
-                        ctx.strokeStyle = `rgba(0, 124, 195, ${0.1 - d/1500})`;
-                        ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(p2.x, p2.y); ctx.stroke();
+            for (let i = 0; i < particles.length; i++) {
+                particles[i].update();
+                for (let j = i; j < particles.length; j++) {
+                    let dx = particles[i].x - particles[j].x;
+                    let dy = particles[i].y - particles[j].y;
+                    let d = Math.sqrt(dx*dx + dy*dy);
+                    if (d < 120) {
+                        ctx.strokeStyle = `rgba(0, 124, 195, ${0.15 - d/800})`;
+                        ctx.lineWidth = 1;
+                        ctx.beginPath();
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.stroke();
                     }
-                });
-            });
+                }
+            }
             requestAnimationFrame(animate);
         }
-        animate();
+        init(); animate();
     </script>
 </body>
 </html>
